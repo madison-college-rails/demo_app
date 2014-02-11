@@ -4,7 +4,11 @@ class MicropostsController < ApplicationController
   # GET /microposts
   # GET /microposts.json
   def index
-    @microposts = Micropost.all
+    if params[:user_id]
+      @microposts = User.find(params[:user_id]).microposts
+    else
+      @microposts = Micropost.all
+    end
   end
 
   # GET /microposts/1
